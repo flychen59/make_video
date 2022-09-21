@@ -1,0 +1,29 @@
+import cv2,os
+def makevideo(path_output,video_output):
+
+    if not os.path.exists(video_output):
+        os.makedirs(video_output)
+    img_array = []
+
+    image=[]
+    for k in os.listdir(path_output):
+            image.append(k)
+            image.sort()
+    for u in image:
+        # if k=='9_compose.mp4':
+
+
+            # for p in os.listdir(path_output+'\\'+k):
+                img = cv2.imread(path_output+'/'+u)
+                # print(k,p)
+                height, width, layers = img.shape
+                size = (width, height)
+                img_array.append(img)
+
+                out = cv2.VideoWriter(video_output+'/'+'20.mp4', cv2.VideoWriter_fourcc(*'mp4v'), 10, size)
+
+                for i in range(len(img_array)):
+                    out.write(img_array[i])
+                out.release()
+# makevideo('/home/flychen59/Downloads/DeepCalib-master/kitti/19/19','/home/flychen59/Downloads/DeepCalib-master/kitti/19/')
+makevideo('/home/flychen59/Downloads/DeepCalib-master/kitti/20','/home/flychen59/Downloads/DeepCalib-master/kitti/')
